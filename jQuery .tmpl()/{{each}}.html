@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{{each}}.html</title>
+		<script src="js/jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.tmpl.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	
+	<!--tmpl-->
+	<!-- {{each}} 循环 -->
+	<script id="each" type="text/x-jquery-tmpl">
+		 <li>ID: ${ID}; Name: ${Name};<br />
+		 	Langs:<ul><strong>{{each(i,lang) Langs}}<li>${i + 1}: <label>${lang}. </label></li>{{/each}}</strong></ul>
+		 </li>	
+	</script>
+	
+	<script type="text/javascript">
+		$(function(){
+			var userLangs = [{ ID: 'think8848', Name: 'Joseph Chan', Langs: ['Chinese', 'English'] }, { ID: 'aCloud', Name: 'Mary Cheung', Langs: ['Chinese', 'French']}];
+			$('#each').tmpl(userLangs).appendTo('#eachList');
+		})
+	</script>
+	
+	
+	<body>
+		
+		<ul id="eachList">
+		</ul>
+	</body>
+</html>

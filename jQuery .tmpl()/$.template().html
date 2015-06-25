@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>$.template().html</title>
+		<script src="js/jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.tmpl.js" type="text/javascript" charset="utf-8"></script>
+		
+		
+		
+		<!-- {{tmpl 'addTo'}} 在其他元素上插入模板 'addTo' -->
+		<script id="item" type="text/x-jquery-tmpl">
+			{{tmpl 'addTo'}}
+			<li>
+				<h2>${Title}</h2>
+				<span>${Time}</span>
+				<i>${Number}</i>
+			</li>
+		</script>
+		
+		<!-- 在模板快下新建其他的html 导入json数据 -->
+		<script id="item1" type="text/x-jquery-tmpl">
+			<div>${Number}</div>
+		</script>
+		
+		
+		<!-- $.template()方法，将一段Html编译为模板-->
+		<script type="text/javascript">
+			 $(function(){
+			 	var oJson = [{Title:'课程',Time:'12:30',Name:'kevin',Number:'12人'},{Title:'课程',Time:'2:00',Name:'likr',Number:'22人'}];
+			 	
+			 	//建立html
+				var markup = '<tr><td>${Title}</td><td>${Name}</td></tr>';
+				
+				//给script ID为item1 建立一个模板为 'addTo'
+			 	$('#item1').template('addTo');
+			 	$('#item').tmpl(oJson).appendTo('#list');
+			 	
+			 	//传入新建的html格式对象 'markup'  'template'为默认对象 直接在元素下生产编译的html模板
+			 	$.template('template', markup);
+				$.tmpl('template', oJson).appendTo('#list');
+			 })
+		</script>
+		
+	</head>
+	<body>
+		
+		<!--案例2-->
+		<div>
+			<ul id="list"></ul>			
+		</div>
+	</body>
+</html>

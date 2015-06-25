@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{{html}}</title>
+		<script src="js/jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.tmpl.js" type="text/javascript" charset="utf-8"></script>
+		
+		<!-- 直接将对象属性值作为HTML代码替换占位符： -->
+		<script id="html" type="text/x-jquery-tmpl"> 
+		      <tr><td>${ID}</td><td>${Name}</td><td>{{html Ctrl}}</td></tr> 
+		</script>
+		<script type="text/javascript">
+		    $(function () {
+		        var ctrls = [{ ID: 'think8848', Name: 'Joseph Chan', Ctrl: '<input type="button" value="Demo" />' }, { ID: 'aCloud', Name: 'Mary Cheung', Ctrl: '<input type="text" value="Demo" />'}];
+		        $('#html').tmpl(ctrls).appendTo('#htmlRows');
+		    });
+		</script>
+	</head>
+	<body>
+		<table border="1" cellspacing="2" cellpadding="0" id="htmlRows"></table>
+	</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{{tmpl}}</title>
+		<script src="js/jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.tmpl.js" type="text/javascript" charset="utf-8"></script>
+		
+		<!-- tmpl -->
+		<script id="tmpl1" type="text/x-jquery-tmpl">
+		    <tr><td>${ID}</td><td>${Name}</td><td> {{tmpl($data) '#tmpl2'}}</td></tr>       
+		</script>
+		<script id="tmpl2" type="type/x-jquery-tmpl">
+		    {{each Langs}}${$value}  {{/each}}   
+		</script>
+		<script type="text/javascript">
+		    $(function () {
+		        var userLangs = [{ ID: 'think8848', Name: 'Joseph Chan', Langs: ['Chinese', 'English'] }, { ID: 'aCloud', Name: 'Mary Cheung', Langs: ['Chinese', 'French']}];
+		        $('#tmpl1').tmpl(userLangs).appendTo('#tmplRows');
+		    });
+		</script>
+	</head>
+	
+	<body>
+		<table border="1" cellspacing="2" cellpadding="0" id="tmplRows"></table>
+	</body>
+</html>

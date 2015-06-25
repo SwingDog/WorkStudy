@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>$item and $data.html</title>
+		<script src="js/jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.tmpl.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		
+		<!--tmpl-->
+		<script id="property" type="text/x-jquery-tmpl">
+			<!-- $item代表当前的模板； -->
+		    <tr><td>${ID}</td><td>${$data.Name}</td><td>${$item.getLangs('; ')}</td></tr> </script>
+		<script type="text/javascript">
+		    $(function () {
+		        var userLangs = [{ ID: 'think8848', Name: 'Joseph Chan', Langs: ['Chinese', 'English'] }, { ID: 'aCloud', Name: 'Mary Cheung', Langs: ['Chinese', 'French']}];
+		        //tmpl(一个json对象，一个getLangs函数方法)
+		        $('#property').tmpl(userLangs, {
+		            getLangs: function (separator) {
+		            	//返回当前json数据 data.Langs 
+		                return this.data.Langs.join(separator);//join() 方法用于把数组中的所有元素放入一个字符串。
+		            }
+		        })
+		        .appendTo('#propertyRows');
+		    });
+		</script>
+		
+		<!--案例2-->
+		<script id="item-1" type="text/x-jquery-tmpl">
+			<li>
+				<!-- $data代表当前的数据。 -->
+				<h2>${$data.Class}</h2>
+				<span>${$data.Time}</span>
+				<strong>${$item.getNames(',')}</strong>
+			</li>
+			
+		</script>
+		<script type="text/javascript">
+			$(function(){
+				var OJson = [{ Class:'语文', Time:'2015年6月25日11:32:29',Name:['kevinli','boken']},{ Class:'数学', Time:'2015年6月5日8:02',Name:['Rammstein','likr']}];
+				$('#item-1').tmpl(OJson,{
+					getNames: function(comma){
+						return this.data.Name.join(comma);
+					}
+				}).appendTo('#list');
+			})
+		</script>
+		
+		
+		
+		<table cellspacing="0" cellpadding="3" border="1">
+		    <tbody id="propertyRows">
+		    </tbody>
+		</table>
+		
+		<div>
+			<ul id="list"></ul>
+		</div>
+		
+		
+	</body>
+</html>

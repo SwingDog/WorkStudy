@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{{tmpl}}</title>
+		<script src="js/jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.tmpl.js" type="text/javascript" charset="utf-8"></script>
+		
+		<!-- tmpl -->
+		<script id="tab" type="text/x-jquery-tmpl">
+		    <tr><td>${ID}</td><td>${Name}</td><td>${Langs}</td></tr>       
+		</script>
+		
+		<!-- $.tmplItem()方法，使用这个方法，可以获取从render出来的元素上重新获取$item -->
+		<script type="text/javascript">
+		 	$(function(){
+		 		var userLangs = [{ ID: 'think8848', Name: 'Joseph Chan', Langs: ['Chinese', 'English'] }, { ID: 'aCloud', Name: 'Mary Cheung', Langs: ['Chinese', 'French']}];
+				$('#tab').tmpl(userLangs).appendTo('#table');
+				$('tbody').delegate('tr', 'click', function () {
+				    var item = $.tmplItem(this);
+				    alert(item.data.Name);
+				});
+		 	})
+		</script>
+	</head>
+	
+	<body>
+		<table border="1" cellspacing="2" cellpadding="0" id="table"></table>
+	</body>
+</html>

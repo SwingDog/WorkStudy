@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<meta charset="UTF-8"/>
+<head>
+    <title>jquery template demo</title>
+    <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.tmpl.js"></script>
+    <script id="myTemplate" type="text/x-jquery-tmpl">
+        <tr><td>${ID}</td><td>${Name}</td></tr>
+    </script>
+	
+	<!--script标签定义的ID值 ${} 相当于是占位符，但是它还有另一种写法{{= ID}} ${Name}值得是json里对象的名称 -->
+	<script id="box" type="text/x-jquery-tmpl">
+		<li>
+			<a>${Name}</a>
+			<span>${ID}</span>
+			<span>${ID}</span><!--  ${} 这可以理解为占位符-->
+		</li>
+	</script>
+	
+    <script type="text/javascript">
+        $(function () {
+			//json数据格式
+            var users = [{ ID: 'think8848', Name: 'Joseph Chan' },{ ID: 'aCloud', Name: 'Mary Cheung'}];
+			//选择ID：myTemplate标签元素 调用tmpl函数方法 传入users(json数据格式), 插入数据
+            $('#myTemplate').tmpl(users).appendTo('#rows');
+        });
+    </script>
+
+	<script  type="text/javascript">
+		$(function(){
+			var oList = [{Name:'kevinli',ID:'222'},{Name:'Rammstein',ID:'8888'}];
+			$('#box').tmpl(oList).appendTo('#list');
+		})
+	</script>
+</head>
+<body>
+    <table cellspacing="0" cellpadding="3" border="1">
+        <tbody id="rows">
+        </tbody>
+    </table>
+	<div>
+		<ul id="list">
+		</ul>
+	</div>
+</body>
+</html>

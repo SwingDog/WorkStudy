@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{{if}}和{{else}}.html</title>
+		<script src="js/jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.tmpl.js" type="text/javascript" charset="utf-8"></script>
+		
+		<!--tmpl-->
+		<!-- {{if}}和{{else}} if else 判断语句-->
+		<!-- 如果Langs数组元素超过1个，则用'; '连接起来，否则就直接显示Langs -->
+		<script id="ifelse" type="text/x-jquery-tmpl"> 
+		      <tr><td>${ID}</td><td>${Name}</td><td>{{if Langs.length > 1}}${Langs.join('; ')}{{else}}${Langs}{{/if}}</td></tr> 
+		</script>
+		
+		<script type="text/javascript">
+			$(function(){
+				var userLangs = [{ ID: 'think8848', Name: 'Joseph Chan', Langs: ['Chinese', 'English'] }, { ID: 'aCloud', Name: 'Mary Cheung', Langs: ['Chinese']}];
+				$('#ifelse').tmpl(userLangs).appendTo('#eachList');
+			})
+			
+		</script>
+	</head>
+	
+	<body>
+		<table border="1" cellspacing="2" cellpadding="0" id="eachList">
+		</table>
+	</body>
+</html>
